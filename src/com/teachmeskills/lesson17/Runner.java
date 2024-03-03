@@ -8,18 +8,19 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter 1 or 2");
-        boolean exit = true;
 
-        while (exit) {
-            try {
+        System.out.println("Введите число : "+
+                "\n1 Реверс строки"+
+                "\n2 Факториал числа"+
+                "\n3 День недели" +
+                "\n-------------------------");
+        try (Scanner scanner = new Scanner(System.in);) {
+            while (true) {
                 switch (scanner.nextInt()) {
                     case 1: {
                         FuncInterface<String> my = str -> new StringBuilder(str).reverse().toString();
                         System.out.println("Реверс Artyom -> " + my.doSome("Artyom"));
-                        exit = false;
-                        break;
+                        return;
                     }
                     case 2: {
                         FuncInterface<Integer> my = f -> {
@@ -30,24 +31,22 @@ public class Runner {
                             return result;
                         };
                         System.out.println("Факториал !4 -> " + my.doSome(4));
-                        exit = false;
-                        break;
+                        return;
+                    }
+                    case 3: {
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(new Date());
+                        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+                        System.out.println("\n" + "День недели - " + dayOfWeek + "\n");
+                        return;
                     }
                     default: {
-                        System.out.println("Re-enter 1 or 2");
-                        break;
+                        System.out.println("Попробуйте снова от 1-3");
                     }
                 }
-            } catch (Exception e) {
-                exit = false;
             }
+        } catch (Exception e) {
+            System.out.println("Введна не валидная строка, попробуйте снова");
         }
-
-
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        System.out.println("\n" +"День недели - " + dayOfWeek + "\n");
-
     }
 }
