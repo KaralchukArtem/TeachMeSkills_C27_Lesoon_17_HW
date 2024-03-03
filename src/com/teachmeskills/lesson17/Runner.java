@@ -14,7 +14,7 @@ public class Runner {
                 "\n2 Факториал числа"+
                 "\n3 День недели" +
                 "\n-------------------------");
-        try (Scanner scanner = new Scanner(System.in);) {
+        try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1: {
